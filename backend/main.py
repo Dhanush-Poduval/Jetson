@@ -5,6 +5,7 @@ from . import schemas,database
 from .database import SessionLocal
 from sqlalchemy.orm import Session
 import random
+from typing import List
 
 
 
@@ -22,11 +23,15 @@ models.Base.metadata.create_all(bind=engine)
 
 
 
-@app.get('/dashboard')
-def values():
-    return"All alright"
+@app.get('/dashboard',response_model=List[schemas.Details])
+def values(db:Session=Depends(get_db)):
+    value=db.query(models.Details).all()
 
-@app.post("/dashboard",status_code=201)
+    return value
+
+    
+
+@app.post("/dashboard",status_code=201,response_model=schemas.Details)
 def add_values(value:schemas.Show_Details,db:Session=Depends(get_db)):
     new_values=models.Details(Name=value.Name,Connected_To=value.Connected_To,Changes_made=value.Changes_made , CPU=round(random.uniform(0,100),2),GPU=round(random.uniform(0,100),2),RAM=round(random.uniform(0,100),2))
     db.add(new_values)
