@@ -1,4 +1,4 @@
-from fastapi import FastAPI,Depends,status
+from fastapi import FastAPI,Depends,status,HTTPException
 from . import models
 from .database import engine
 from . import schemas,database
@@ -52,7 +52,7 @@ def add_values(value:schemas.Show_Details,db:Session=Depends(get_db)):
 def update(id,value:schemas.Show_Details,db:Session=Depends(get_db)):
     new=db.query(models.Details).filter(models.Details.id==id).first()
     if not new:
-        raise status.HTTP_400_BAD_REQUEST
+        raise HTTPException(status_code=400,detail="ID NOT FOUND")
     new.Name=value.Name
     new.Changes_made=value.Changes_made
     new.Connected_To=value.Connected_To
