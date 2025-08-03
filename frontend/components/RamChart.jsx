@@ -12,6 +12,7 @@ import {
   CartesianGrid,
   XAxis
 } from 'recharts'
+import dayjs from 'dayjs'
 
 
 
@@ -30,13 +31,15 @@ export default function RamChart({Data}) {
         <ReAreaChart data={Data}>
           <CartesianGrid />
           <XAxis
-            dataKey="timestamp"
+            dataKey="timestamps"
             tickLine={false}
             axisLine={false}
             tickMargin={8}
+            tickFormatter={(timestamp) => dayjs(timestamp).format('HH:mm:ss')}
           />
           <ChartTooltip content={<ChartTooltipContent />} />
-          <Area dataKey="RAM" strokeWidth={2} />
+          <Area dataKey="RAM" strokeWidth={2} stroke="#8b5cf6" 
+          fill="#8b5cf6" />
         </ReAreaChart>
       </ChartContainer>
     </div>

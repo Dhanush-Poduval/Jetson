@@ -48,7 +48,8 @@ export default function Page() {
           <div className='bg-primary-foreground p-4 rounded-lg '></div>
            <div className='bg-primary-foreground p-4 rounded-lg col-span-2'><RamChart Data={data}/></div>
            <div className='bg-primary-foreground p-4 rounded-lg '></div>
-         
+         <div className='bg-primary-foreground p-4 rounded-lg '>Test-6</div> 
+
 
         </div>
 

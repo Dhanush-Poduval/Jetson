@@ -13,6 +13,7 @@ import {
   XAxis
 } from 'recharts'
 import {ScrollArea} from '../components/ui/scroll-area'
+import dayjs from 'dayjs'
 
 
 
@@ -35,10 +36,11 @@ export default function GpuChart({Data}) {
                     <ReAreaChart data={Data}>
                     <CartesianGrid />
                     <XAxis
-                        dataKey="timestamp"
+                        dataKey="timestamps"
                         tickLine={false}
                         axisLine={false}
                         tickMargin={8}
+                        tickFormatter={(timestamp) => dayjs(timestamp).format('HH:mm:ss')}
                     />
                     <ChartTooltip content={<ChartTooltipContent />} />
                     <Area dataKey="GPU" stroke="#f97316" fill="#f97316" strokeWidth={2} />
