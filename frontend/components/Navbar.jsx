@@ -5,17 +5,18 @@ import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigge
 import { Button } from './ui/button'
 import { Sun ,Moon} from 'lucide-react'
 import { useTheme } from 'next-themes'
+import { SidebarTrigger } from './ui/sidebar'
 
 export default function Navbar() {
     const {setTheme}=useTheme()
   return (
     <div className='w-full px-4 py-2 border-b ml-0'>
-        <div className='flex  items-center justify-between w-full gap-10 mx-auto ml-5 px-0 py-0 '>
+        <div className='flex  items-center justify-between w-full gap-10 mx-auto  px-0 py-0 '>
            
-            Collapse Button
+            <SidebarTrigger className="ml-0"/>
             
             <div className='mr-5 flex flex-row gap-5 items-baseline justify-end'>
-                <Link href="/">Dashboard</Link>
+                <Link href="/home">Home</Link>
                 <DropdownMenu>
                     <DropdownMenuTrigger asChild>
                         <Button variant="outline" size="icon">
@@ -38,6 +39,8 @@ export default function Navbar() {
                     </DropdownMenuContent>
                   
                 </DropdownMenu>
+
+                
             </div>
         </div>
 
