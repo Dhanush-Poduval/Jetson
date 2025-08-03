@@ -22,7 +22,7 @@ models.Base.metadata.create_all(bind=engine)
 
 @app.get('/dashboard/live',response_model=List[schemas.Live_Details])
 def live(db:Session=Depends(get_db)):
-    value=db.query(models.Details).all()
+    value=db.query(models.Live_Details).all()
     return value
 
 
@@ -37,7 +37,15 @@ def values_id(id, db:Session=Depends(get_db)):
     values=db.query(models.Details).filter(models.Details.id==id).first()
     return values
 
-    
+@app.post('/dashboard/livevalues',response_model=schemas.Live_Details)
+def add_livevalues(db:Session=Depends(get_db)):
+    new_values=models.Live_Details(CPU=round(random.uniform(0,100),2),GPU=round(random.uniform(0,100),2),RAM=round(random.uniform(0,100),2))
+    db.add(new_values)
+    db.commit()
+    db.refresh(new_values)
+    return new_values
+
+
 
 @app.post("/dashboard",status_code=201,response_model=schemas.Details)
 def add_values(value:schemas.Show_Details,db:Session=Depends(get_db)):

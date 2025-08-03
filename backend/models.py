@@ -12,3 +12,11 @@ class Details(Base):
     Connected_To=Column(String)
     Changes_made=Column(String)
 
+class Live_Details(Base):
+    __tablename__='Live'
+    id=Column(Integer,primary_key=True,index=True)
+    CPU=Column(Float)
+    GPU=Column(Float)
+    RAM=Column(Float)
+
+
