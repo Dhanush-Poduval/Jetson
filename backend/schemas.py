@@ -1,4 +1,5 @@
 from pydantic import BaseModel
+from datetime import datetime
 class Details(BaseModel):
     Name:str
     Connected_To:str
@@ -12,6 +13,7 @@ class Live_Details(BaseModel):
     CPU:float
     GPU:float
     RAM:float
+    timestamps:datetime
     class Config:
         orm_mode=True
 

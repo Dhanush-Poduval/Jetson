@@ -1,5 +1,8 @@
 from .database import Base
 from sqlalchemy import Column,Integer,String,Float
+from sqlalchemy import DateTime
+from datetime import datetime,timezone
+from zoneinfo import ZoneInfo
 
 
 class Details(Base):
@@ -18,5 +21,6 @@ class Live_Details(Base):
     CPU=Column(Float)
     GPU=Column(Float)
     RAM=Column(Float)
+    timestamps=Column(DateTime(timezone=True),default=lambda:datetime.now(ZoneInfo("Asia/Kolkata")))
 
 
