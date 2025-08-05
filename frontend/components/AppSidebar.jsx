@@ -9,7 +9,7 @@ import { Button } from './ui/button'
 const items=[
     {
         titles:'Home',
-        url:'/dashboard',
+        url:'/',
         icon:Home
     },
     {
@@ -23,7 +23,7 @@ const items=[
     },
     {
         titles:'RAM',
-        url:'/dashboard/gpu',
+        url:'/dashboard/ram',
         icon:Computer
     }
 ]
