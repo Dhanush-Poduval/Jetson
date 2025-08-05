@@ -26,10 +26,17 @@ def get_db():
 
 models.Base.metadata.create_all(bind=engine)
 
-@app.get('/dashboard/live',response_model=List[schemas.Live_Details])
-def live(db:Session=Depends(get_db)):
-    value=db.query(models.Live_Details).all()
+@app.get('/dashboard/live', response_model=List[schemas.Live_Details])
+def live(db: Session = Depends(get_db)):
+    value = (
+        db.query(models.Live_Details)
+        .order_by(models.Live_Details.id.desc())
+        .limit(30)
+        .all()
+    )
+    value.reverse() 
     return value
+
 
 
 @app.get('/dashboard',response_model=List[schemas.Details])

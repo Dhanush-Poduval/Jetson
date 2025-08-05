@@ -1,5 +1,6 @@
 'use client'
 import { useState, useEffect, useRef } from 'react'
+const MAX_ENTRIES = 30
 
 export function UseliveStata() {
   const [data, setData] = useState([])
@@ -13,6 +14,10 @@ export function UseliveStata() {
       const res = await fetch('http://127.0.0.1:8000/dashboard/live')
       const json = await res.json()
       setData(json)
+       setData((prevData) => {
+      const newData = [...prevData, json]
+      return newData.slice(-MAX_ENTRIES) 
+    })
     } catch (err) {
       console.error('Failed to fetch:', err)
     }
